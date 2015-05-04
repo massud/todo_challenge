@@ -8,24 +8,30 @@ describe('TodoList', function(){
   }));
 
   it('initialises with no created tasks', function(){
-    expect(ctrl.createTask).toEqual(""); //toBeNull instead?
+    expect(ctrl.list).toEqual([]);
   });
 
-  it('can create a task', function(){
-    ctrl.createTask = "Buy milk"
-    expect(ctrl.createTask).toEqual("Buy milk");
-  });
+  // it('can create a task', function(){
+  //   ctrl.todoTask = "Buy milk"
+  //   expect(ctrl.createTask).toEqual("Buy milk");
+  // });
 
-  it('can add a task once created', function(){
-    ctrl.createTask = "Buy milk"
+  it('can add a task', function(){
+    ctrl.todoTask = "Buy milk"
     ctrl.addTask();
-    expect(ctrl.list).toContain("Buy milk");
+    expect(ctrl.list).toEqual[ Object({ done: false, text: 'Buy milk' }) ];
   });
+
+  // it('can total tasks' function(){
+  //   ctrl.todoTask = "Buy milk"
+  //   ctrl.addTask();
+  //   expect(ctrl.total).toEqual(1);
+  // });
 
   it('can remove a task', function(){
-    ctrl.createTask = "Buy milk"
+    ctrl.todoTask = "Buy milk"
     ctrl.addTask();
-    ctrl.removeTask("Buy milk");
+    ctrl.removeTask();
     expect(ctrl.list).toEqual([])
   });
 });

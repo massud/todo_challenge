@@ -1,6 +1,6 @@
 describe('Todo List', function() {
 
-  var taskBox = element(by.model('toDo.createTask'));
+  var taskBox = element(by.model('ctrl.todoTask'));
   var taskButton = element(by.className('btn'));
 
   beforeEach(function(){
@@ -11,12 +11,28 @@ describe('Todo List', function() {
     expect(browser.getTitle()).toEqual('To Do List');
   });
 
-  it('add tasks to the list', function() {
-    taskBox.sendKeys('Buy milk');
-    taskButton.click();
-
-    var tasks = element.all(by.repeater('list in toDo.list'));
-    expect(tasks.getText()).toContain('Buy milk')
+  it('can submit task', function() {
+    expect(browser.isElementPresent(by.model('ctrl.todoTask'))).toBe(false);
   });
-  
+
+  it('it can receive task', function() {
+    expect(browser.isElementPresent(by.model('ctrl.todoTask'))).toBe(false);
+  });
+
+describe('When making a list', function(){
+
+    var tasks;
+
+    beforeEach(function(){
+      tasks = element.all(by.repeater('list in toDo.list'));
+      
+      taskBox.sendKeys('Buy milk');
+      taskButton.click();
+
+    expect(tasks.getText()).toContain('Buy milk')
+
+      });
+    });
 });
+
+
