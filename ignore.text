@@ -1,0 +1,38 @@
+describe('Todo List', function() {
+
+  var taskBox = element(by.model('toDo.createTask'));
+  var taskButton = element(by.className('btn'));
+
+  beforeEach(function(){
+    browser.get('http://localhost:8080');
+  })
+  
+  it('has a title', function() {
+    expect(browser.getTitle()).toEqual('To Do List');
+  });
+
+  it('add tasks to the list', function() {
+    taskBox.sendKeys('Buy milk');
+    taskButton.click();
+
+    var tasks = element.all(by.repeater('list in toDo.list'));
+    expect(tasks.getText()).toContain('Buy milk')
+  });
+  
+
+
+EXPERIMENTING WITH DELETING TASKS - I JUST LEFT IT WITH SELF.REMOVETASK = FUNCTION(START)...
+ALSO CHANGED IT ON THE INDEX.HTML 
+
+THIS WAS ALL TAKEN FROM PART 7 OF THE ANGULAR TUTORIAL
+
+
+
+<body ng-controller="TodoListController as toDo">
+<h1>To Do List</h1>
+  <form ng-submit="toDo.addTask()">
+  <div>
+    Add your task and hit enter
+    </div>
+    <input class="taskForm" placeholder="Create Task" type="text" ng-model="toDo.createTask">
+    <input type="submit" value="add">

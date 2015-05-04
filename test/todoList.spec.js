@@ -8,7 +8,7 @@ describe('TodoList', function(){
   }));
 
   it('initialises with no created tasks', function(){
-    expect(ctrl.createTask).toEqual(null); //toBeNull instead?
+    expect(ctrl.createTask).toEqual(""); //toBeNull instead?
   });
 
   it('can create a task', function(){
